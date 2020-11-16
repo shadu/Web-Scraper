@@ -14,17 +14,17 @@ public class sku {
 			Elements temp = doc.select("div.tile-body");
 			// this loop prints Product Name and Product Price from PLP (all in order)
 			int i = 0;
-			for (Element movieList : temp) {
+			for (Element productList : temp) {
 				int holder = i + 1;
-				System.out.println(holder + " " + movieList.getElementsByTag("a").first().text() + "\n" +"Price: " + movieList.getElementsByTag("span").first().text() +"\n");
+				System.out.println(holder + " " + productList.getElementsByTag("a").first().text() + "\n" +"Price: " + productList.getElementsByTag("span").first().text() +"\n");
 				i++;
 			}
 			
 			// this loop stores each Product Name in an array that will then be used to put the values in the csv. The name comes from the PLP.			
 			String array[] = new String [i];
 			int j = 0;
-			for (Element movieList : temp) {
-				array [j] = movieList.getElementsByTag("a").first().text();
+			for (Element productList : temp) {
+				array [j] = productList.getElementsByTag("a").first().text();
 				System.out.println(array[j] + "\n");
 				i++;
 			}
@@ -54,8 +54,8 @@ public class sku {
 	            	//this gives sku values and stores it in the array. the values are extracted from the PDP
 	    			Document doc1 = Jsoup.connect(link.attr("abs:href")).userAgent("mozilla/17.0").get();
 	    			Elements temp1 = doc1.select("span.product-id");
-	    			for (Element movieList : temp1) {
-	    				sku[a] = movieList.getElementsByTag("span").first().text();
+	    			for (Element productList : temp1) {
+	    				sku[a] = productList.getElementsByTag("span").first().text();
 	    				System.out.println(sku[a]);
 	    				a++;
 	    			}
@@ -63,8 +63,8 @@ public class sku {
 	    			//this gives price values and stores it in the array. the values are extracted from the PDP
 	    			Document doc3 = Jsoup.connect(link.attr("abs:href")).userAgent("mozilla/17.0").get();
 	    			Elements temp7 = doc3.select("span.sales");
-	    			for (Element movieList : temp7) {
-	    				price[b] = movieList.getElementsByTag("span").first().text();
+	    			for (Element productList : temp7) {
+	    				price[b] = productList.getElementsByTag("span").first().text();
 	    				System.out.println(price[b]);
 	    				b++;
 	    			}
@@ -87,48 +87,48 @@ public class sku {
 	    			
 	            	//this gives inner description values and stores it in the array. the values are extracted from the PDP
 	    			Elements temp5 = doc2.select("p.inside-composition");
-	    			for (Element movieList : temp5) {
-	    				inner[c] = movieList.getElementsByTag("span").first().text();
-	    				System.out.println(movieList.getElementsByTag("strong").first().text() + " " + inner[c]);
+	    			for (Element productList : temp5) {
+	    				inner[c] = productList.getElementsByTag("span").first().text();
+	    				System.out.println(productList.getElementsByTag("strong").first().text() + " " + inner[c]);
 	    				c++;
 	    			}
 	    			
 	            	//this gives outer description values and stores it in the array. the values are extracted from the PDP
 	    			Elements temp6 = doc2.select("p.outside-composition");
-	    			for (Element movieList : temp6) {
-	    				outer[d] = movieList.getElementsByTag("span").first().text();
-	    				System.out.println(movieList.getElementsByTag("strong").first().text() + " " + outer[d]);
+	    			for (Element productList : temp6) {
+	    				outer[d] = productList.getElementsByTag("span").first().text();
+	    				System.out.println(productList.getElementsByTag("strong").first().text() + " " + outer[d]);
 	    				d++;
 	    			}
 	    			
 	            	//this gives shoe sole values and stores it in the array. the values are extracted from the PDP
 	    			Elements temp2 = doc2.select("p.shoe.sole.material");
-	    			for (Element movieList : temp2) {
-	    				shoe[f] = movieList.getElementsByTag("span").first().text();
-	    				System.out.println(movieList.getElementsByTag("strong").first().text() + " " + shoe[f]);
+	    			for (Element productList : temp2) {
+	    				shoe[f] = productList.getElementsByTag("span").first().text();
+	    				System.out.println(productList.getElementsByTag("strong").first().text() + " " + shoe[f]);
 	    				f++;
 	    			}
 	    			
 	            	//this gives the padding material values and stores it in the array. the values are extracted from the PDP
 	    			Elements temp3 = doc2.select("p.padding-material");
-	    			for (Element movieList : temp3) {
-	    				padding[g] = movieList.getElementsByTag("span").first().text();
-	    				System.out.println(movieList.getElementsByTag("strong").first().text() + " " + padding[g]);
+	    			for (Element productList : temp3) {
+	    				padding[g] = productList.getElementsByTag("span").first().text();
+	    				System.out.println(productList.getElementsByTag("strong").first().text() + " " + padding[g]);
 	    				g++;
 	    			}
 	    			
 	            	//this gives long description values and stores it in the array or stores null if theres no value. the values are extracted from the PDP
 	    			Elements temp4 = doc2.select("div.mb-3.long-description");
-	    			for (Element movieList : temp4) {
+	    			for (Element productList : temp4) {
 	    				
-	    				if (movieList.getElementsByTag("p").text().equals("")) {
+	    				if (productList.getElementsByTag("p").text().equals("")) {
 	    					 longDescription[h] = "";
 	    					 continue;				
 	    					 }
 	    				else
-	    				longDescription[h] = movieList.getElementsByTag("p").first().text();
+	    				longDescription[h] = productList.getElementsByTag("p").first().text();
 	    				System.out.println(longDescription[h]);
-	    				//System.out.println(movieList.ownText() + movieList.getElementsByTag("p").first().text() + "\n");
+	    				//System.out.println(productList.ownText() + productList.getElementsByTag("p").first().text() + "\n");
 	    				h++;
 	    			}
 	    			
